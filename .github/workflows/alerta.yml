@@ -19,3 +19,4 @@ jobs:
                 -H "Priority: default" \
                 -d "Se ha realizado un push a la rama main del repositorio ${{ github.repository }}" \
                 https://ntfy.sh/devops-itla
+                -H "Title: Detalles del Push" \
