@@ -10,13 +10,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout del codigo
+      - name: Checkout del repositorio
         uses: actions/checkout@v4
 
-      - name: Enviar notificacion a ntfy
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Ejecutar Hola Mundo
+        run: node app.js
+
+      - name: Enviar notificacion a NTFY
         run: |
-          curl -H "Title: Nuevo Push" \
-                -H "Priority: default" \
-                -d "Se ha realizado un push a la rama main del repositorio ${{ github.repository }}" \
-                https://ntfy.sh/devops-itla
-                -H "Title: Detalles del Push" \
+          curl \
+            -H "Title: Practica Integracion Continua" \
+            -H "Priority: default" \
+            -d "Nuevo push realizado por ${{ github.actor }} en ${{ github.repository }}" \
+            https://ntfy.sh/devops-itla
